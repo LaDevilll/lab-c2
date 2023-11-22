@@ -6,10 +6,11 @@ using System.Text;
 using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Runtime.ConstrainedExecution;
 
 namespace CLASS
 {
-    class Staff
+    class Employees
     {
         string _name;
         string _lastname;
@@ -21,11 +22,12 @@ namespace CLASS
 
         public void PrintToConsole()
         {
-            Console.WriteLine($"Сотрудник {_name} {_lastname} {_middlename} {_address} {_dateofbirth} {_salary} рублей {_tranfers}");
+            Console.WriteLine($"Сотрудник: {_name} {_lastname} {_middlename}, {_address}, {_dateofbirth}, {_salary} рублей, {_tranfers}");
         }
 
-        public Staff(string name, string lastname, string middlename, string address, DateTime dateofbirth, decimal salary)
+        public Employees(string name, string lastname, string middlename, string address, DateTime dateofbirth, decimal salary)
         {
+            _tranfers = new Transfer[0];
             this._name = name;
             this._lastname = lastname;
             this._middlename = middlename;
@@ -34,7 +36,7 @@ namespace CLASS
             this._salary = salary;
         }
 
-        public Staff()
+        public Employees()
         {
             _name = "Валерий";
             _lastname = "Леонтьев";
@@ -42,10 +44,11 @@ namespace CLASS
             _address = "Космическая 99";
             _dateofbirth = new DateTime(2000, 10, 30);
             _salary = 150000;
+            _tranfers = new Transfer[1];
         }
 
         public string Name
-        { 
+        {
             get { return _name; }
             set { _name = value; }
         }
@@ -80,19 +83,101 @@ namespace CLASS
             set { _salary = value; }
         }
 
-        class Transfer
+        public Transfer[] tranfers
         {
-            string _post;
-            string _reasonfortranfer;
-            int _ordernumbers;
-            DateTime _dateoftheorder;
+            get { return _tranfers; }
+            set { _tranfers = value; }
+        }
+    }
 
-            public Transfer()
+    
+    class Transfer
+    {
+        string _post;
+        string _reasonfortranfer;
+        int _ordernumbers;
+        DateTime _dateoftheorder;
+
+        public Transfer()
+        {
+            _post = "Фармацевт";
+            _reasonfortranfer = "Повышение";
+            _ordernumbers = 333;
+            _dateoftheorder = new DateTime(2001, 11, 25);
+        }
+
+        public Transfer(string post,  string reasonfortranfer, int ordernumbers, DateTime dateoftheorder)
+        {
+            _post = post;
+            _reasonfortranfer= reasonfortranfer;
+            _ordernumbers = ordernumbers;
+            _dateoftheorder= dateoftheorder;
+        }
+    }
+
+
+    class AssortmentOfMedicines
+    {
+        string _nameofthemedicine;
+        string _packagingform;
+        decimal _priceperpackage;
+        decimal _amount;
+        public AssortmentOfMedicines(string nameofthemedicine, string packagingform, decimal priceperpackage, decimal amount)
+        {
+            _nameofthemedicine = nameofthemedicine;
+            _packagingform = packagingform;
+            _priceperpackage = priceperpackage;
+            _amount = amount;
+
+        }
+        public AssortmentOfMedicines()
+        {
+            _nameofthemedicine = "Парацетомол";
+            _packagingform = "Прямоугольная";
+            _priceperpackage = 200;
+            _amount = 4;
+        }
+
+        public string Тameofthemedicine
+        {
+            get { return _nameofthemedicine; }
+            set { _nameofthemedicine = value; }
+        }
+
+        public string Packagingform
+        {
+            get { return _packagingform; }
+            set { _packagingform = value; }
+        }
+
+        public decimal Priceperpackage
+        {
+            get { return _priceperpackage; }
+            set { _priceperpackage = value; }
+        }
+
+        public decimal Amount
+        {
+            get { return _amount; }
+            set { _amount = value; }
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Transfer[] transfers = new[]
             {
-                _post = "Фармацевт";
-                _reasonfortranfer = "...";
-                _dateoftheorder = new DateTime(2001, 11, 25);
-            }
+                new Transfer("Фармацевт", "Повышение", 333, new DateTime(2001, 11, 25)),
+                new Transfer(),
+            };
+            Employees employees = new Employees();
+            employees.PrintToConsole();
         }
     }
 }
+
+
+
+
