@@ -18,22 +18,27 @@ namespace CLASS
         string _address;
         DateTime _dateofbirth;
         decimal _salary;
-        Transfer[] _tranfers;
+        Transfer[] _transfers;
 
         public void PrintToConsole()
         {
-            Console.WriteLine($"Сотрудник: {_name} {_lastname} {_middlename}, {_address}, {_dateofbirth}, {_salary} рублей, {_tranfers}");
+            Console.WriteLine($"Сотрудник: {_name} {_lastname} {_middlename}, {_address}, {_dateofbirth}, {_salary} рублей");
+            Console.WriteLine("Переводы:");
+            foreach (var transfer in _transfers)
+            {
+                transfer.PrintToConsole();
+            }
         }
 
-        public Employees(string name, string lastname, string middlename, string address, DateTime dateofbirth, decimal salary)
+        public Employees(string name, string lastname, string middlename, string address, DateTime dateofbirth, decimal salary, Transfer[] transfers)
         {
-            _tranfers = new Transfer[0];
-            this._name = name;
-            this._lastname = lastname;
-            this._middlename = middlename;
-            this._address = address;
-            this._dateofbirth = dateofbirth;
-            this._salary = salary;
+            _transfers = transfers ?? new Transfer[0];
+            _name = name;
+            _lastname = lastname;
+            _middlename = middlename;
+            _address = address;
+            _dateofbirth = dateofbirth;
+            _salary = salary;
         }
 
         public Employees()
@@ -44,7 +49,7 @@ namespace CLASS
             _address = "Космическая 99";
             _dateofbirth = new DateTime(2000, 10, 30);
             _salary = 150000;
-            _tranfers = new Transfer[1];
+            _transfers = new Transfer[] { new Transfer("Фармацевт", "Повышение", 333, new DateTime(2001, 11, 25)), new Transfer() };
         }
 
         public string Name
@@ -83,35 +88,39 @@ namespace CLASS
             set { _salary = value; }
         }
 
-        public Transfer[] tranfers
+        public Transfer[] transfers
         {
-            get { return _tranfers; }
-            set { _tranfers = value; }
+            get { return _transfers; }
+            set { _transfers = value; }
         }
     }
 
-    
-    class Transfer
+    public class Transfer
     {
-        string _post;
-        string _reasonfortranfer;
-        int _ordernumbers;
-        DateTime _dateoftheorder;
+        private string _post;
+        private string _reasonfortransfer;
+        private int _ordernumbers;
+        private DateTime _dateoftheorder;
 
         public Transfer()
         {
             _post = "Фармацевт";
-            _reasonfortranfer = "Повышение";
+            _reasonfortransfer = "Повышение";
             _ordernumbers = 333;
             _dateoftheorder = new DateTime(2001, 11, 25);
         }
 
-        public Transfer(string post,  string reasonfortranfer, int ordernumbers, DateTime dateoftheorder)
+        public Transfer(string post, string reasonfortransfer, int ordernumbers, DateTime dateoftheorder)
         {
             _post = post;
-            _reasonfortranfer= reasonfortranfer;
+            _reasonfortransfer = reasonfortransfer;
             _ordernumbers = ordernumbers;
-            _dateoftheorder= dateoftheorder;
+            _dateoftheorder = dateoftheorder;
+        }
+
+        public void PrintToConsole()
+        {
+            Console.WriteLine($"Перевод: {_post}, Причина: {_reasonfortransfer}, Номер приказа: {_ordernumbers}, Дата приказа: {_dateoftheorder}");
         }
     }
 
@@ -122,6 +131,7 @@ namespace CLASS
         string _packagingform;
         decimal _priceperpackage;
         decimal _amount;
+
         public AssortmentOfMedicines(string nameofthemedicine, string packagingform, decimal priceperpackage, decimal amount)
         {
             _nameofthemedicine = nameofthemedicine;
@@ -172,7 +182,7 @@ namespace CLASS
                 new Transfer("Фармацевт", "Повышение", 333, new DateTime(2001, 11, 25)),
                 new Transfer(),
             };
-            Employees employees = new Employees();
+            Employees employees = new Employees("Иван", "Иванов", "Иванович", "Улица Пушкина", new DateTime(1980, 5, 15), 120000, transfers);
             employees.PrintToConsole();
         }
     }
