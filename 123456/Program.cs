@@ -17,12 +17,13 @@ namespace CLASS
         string _middlename;
         string _address;
         DateTime _dateofbirth;
-        decimal _salary;
+        string _post;
+        double _salary;
         Transfer[] _transfers;
 
         public void PrintToConsole()
         {
-            Console.WriteLine($"Сотрудник: {_name} {_lastname} {_middlename}, {_address}, {_dateofbirth}, {_salary} рублей");
+            Console.WriteLine($"Сотрудники: \nИмя: {_name}, Фамилия: {_lastname}, Отчество:{_middlename}, Место проживания: {_address}, Дата рождения: {_dateofbirth.ToString("dd.MM.yyyy")}, Должность: {_post}, Зарплата: {_salary} рублей");
             Console.WriteLine("Переводы:");
             foreach (var transfer in _transfers)
             {
@@ -30,7 +31,7 @@ namespace CLASS
             }
         }
 
-        public Employees(string name, string lastname, string middlename, string address, DateTime dateofbirth, decimal salary, Transfer[] transfers)
+        public Employees(string name, string lastname, string middlename, string address, DateTime dateofbirth, double salary, string post, Transfer[] transfers)
         {
             _transfers = transfers ?? new Transfer[0];
             _name = name;
@@ -38,6 +39,7 @@ namespace CLASS
             _middlename = middlename;
             _address = address;
             _dateofbirth = dateofbirth;
+            _post = post;
             _salary = salary;
         }
 
@@ -49,7 +51,8 @@ namespace CLASS
             _address = "Космическая 99";
             _dateofbirth = new DateTime(2000, 10, 30);
             _salary = 150000;
-            _transfers = new Transfer[] { new Transfer("Фармацевт", "Повышение", 333, new DateTime(2001, 11, 25)), new Transfer() };
+            _post = "Заместитель фармацевта";
+            _transfers = new Transfer[] { new Transfer("Фармацевт", "Повышение", 333, new DateTime(25,2,2333)), new Transfer() };
         }
 
         public string Name
@@ -82,7 +85,13 @@ namespace CLASS
             set { _dateofbirth = value; }
         }
 
-        public decimal Salary
+        public string Post
+        {
+            get { return _post; }
+            set { _post = value; }
+        }
+
+        public double Salary
         {
             get { return _salary; }
             set { _salary = value; }
@@ -120,7 +129,7 @@ namespace CLASS
 
         public void PrintToConsole()
         {
-            Console.WriteLine($"Перевод: {_post}, Причина: {_reasonfortransfer}, Номер приказа: {_ordernumbers}, Дата приказа: {_dateoftheorder}");
+            Console.WriteLine($"Должность: {_post}, Причина: {_reasonfortransfer}, Номер приказа: {_ordernumbers}, Дата приказа: {_dateoftheorder.ToString("dd.MM.yyyy")}");
         }
     }
 
@@ -140,6 +149,7 @@ namespace CLASS
             _amount = amount;
 
         }
+
         public AssortmentOfMedicines()
         {
             _nameofthemedicine = "Парацетомол";
@@ -171,6 +181,10 @@ namespace CLASS
             get { return _amount; }
             set { _amount = value; }
         }
+        public void PrintToConsole()
+        {
+            Console.WriteLine($"Название лекарства: {_nameofthemedicine}, Форма упаковки: {_packagingform}, Цена за упаковку: {_priceperpackage}, Количество: {_amount}");
+        }
     }
 
     internal class Program
@@ -179,11 +193,14 @@ namespace CLASS
         {
             Transfer[] transfers = new[]
             {
-                new Transfer("Фармацевт", "Повышение", 333, new DateTime(2001, 11, 25)),
                 new Transfer(),
+                new Transfer("ррпр","прапрарп",90, DateTime.Now)
             };
-            Employees employees = new Employees("Иван", "Иванов", "Иванович", "Улица Пушкина", new DateTime(1980, 5, 15), 120000, transfers);
+            Employees employees = new Employees("Иван", "Иванов", "Иванович", "Улица Пушкина", new DateTime(1980, 5, 15), 120000, "Заместитель фармацевта", transfers);
             employees.PrintToConsole();
+            AssortmentOfMedicines assortmentOfMedicines = new AssortmentOfMedicines("Парацетомол", "Прямоугольная", 200, 4);
+            assortmentOfMedicines.PrintToConsole();
+            Console.ReadKey();
         }
     }
 }
