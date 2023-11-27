@@ -24,7 +24,7 @@ namespace CLASS
 
         public void PrintToConsole()
         {
-            Console.WriteLine($"Сотрудники: \nИмя: {_name}, Фамилия: {_lastname}, Отчество:{_middlename}, Место проживания: {_address}, Дата рождения: {_dateofbirth.ToString("dd.MM.yyyy")}, Должность: {_post}, Зарплата: {_salary} рублей");
+            Console.WriteLine($"Сотрудники: \nИмя: {_name}, Фамилия: {_lastname}, Отчество: {_middlename}, Место проживания: {_address}, Дата рождения: {_dateofbirth.ToString("dd.MM.yyyy")}, Должность: {_post}, Зарплата: {_salary} рублей");
             Console.WriteLine("Переводы:");
             foreach (var transfer in _transfers)
             {

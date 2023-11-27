@@ -2,14 +2,22 @@
 using System;
 using MathTaskClassLibrary;
 
+
 namespace MathTaskClassLibraryTests
 {
     [TestClass]
-    public class UnitTest1
+    public class GeometryTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CalculateAreaTest()
         {
+            int a = 3;
+            int b = 5;
+            int expected = 15;
+
+            Geometry g = new Geometry();
+            int actual = g.CalculateArea(a, b);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
