@@ -163,6 +163,39 @@ namespace CLASS
             _dateoftheorder = dateoftheorder;
         }
 
+        public string Post
+        {
+            get { return _post; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Должность не может быть пустой или состоять только из пробельных символов");
+                _post = value;
+            }
+        }
+
+        public string Reasonfortransfer
+        {
+            get { return _reasonfortransfer; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Причина перевода не может быть пустой или состоять только из пробельных символов");
+                _reasonfortransfer = value;
+            }
+        }
+
+        public int Ordernumbers
+        {
+            get { return _ordernumbers; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("Номер перевода не может быть отрицательным");
+                _ordernumbers = value;
+            }
+        }
+
         public void PrintToConsole()
         {
             Console.WriteLine($"Должность: {_post}, Причина: {_reasonfortransfer}, Номер приказа: {_ordernumbers}, Дата приказа: {_dateoftheorder.ToString("dd.MM.yyyy")}");
@@ -192,6 +225,15 @@ namespace CLASS
             _packagingform = "Прямоугольная";
             _priceperpackage = 200;
             _amount = 4;
+        }
+
+        public void AddDiscount(double discount)
+        {
+            if (discount < 0 || discount > 100)
+                throw new ArgumentException("Скидка должна быть в пределах от 0 до 100 %");
+
+            decimal discountMultiplier = (decimal)(1 - discount / 100);
+            Priceperpackage *= discountMultiplier;
         }
 
         public string Nameofthemedicine
@@ -251,11 +293,12 @@ namespace CLASS
             Transfer[] transfers = new[]
             {
                 new Transfer(),
-                new Transfer("ррпр","прапрарп",90, DateTime.Now)
+                new Transfer("ррпр","прапрарп",90, new DateTime(2023, 5, 15))
             };
-            Employees employees = new Employees("Иван", "Иванов", "Иванович", "Улица Пушкина", new DateTime(1980, 5, 15), 120000, "Заместитель фармацевта", transfers);
+            Employees employees = new Employees("Иван", "Иванов", "Иванович", "Улица Пушкина", new DateTime(2023, 5, 15), 120000, "Заместитель фармацевта", transfers);
             employees.PrintToConsole();
             AssortmentOfMedicines assortmentOfMedicines = new AssortmentOfMedicines("Парацетомол", "Прямоугольная", 200, 4);
+            assortmentOfMedicines.AddDiscount(20);
             assortmentOfMedicines.PrintToConsole();
             Console.ReadKey();
         }
