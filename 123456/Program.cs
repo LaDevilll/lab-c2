@@ -212,8 +212,8 @@ namespace CLASS
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentException("Форма упаковки не может быть пустой или состоять только из пробельных символов");
-                _nameofthemedicine = value;
-                _packagingform
+                _packagingform = value;
+            }
         }
 
         public decimal Priceperpackage
