@@ -59,43 +59,78 @@ namespace CLASS
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Имя не может быть пустым или состоять только из пробельных символов");
+                _name = value;
+            }
         }
 
         public string Lastname
         {
             get { return _lastname; }
-            set { _lastname = value; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Фамилия не может быть пустой или состоять только из пробельных символов");
+                _lastname = value;
+            }
         }
 
         public string Middlename
         {
             get { return _middlename; }
-            set { _middlename = value; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Отчество не может быть пустым или состоять только из пробельных символов");
+                _middlename = value;
+            }
         }
 
         public string Address
         {
             get { return _address; }
-            set { _address = value; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Адрес не может быть пустым или состоять только из пробельных символов");
+                _address = value;
+            }
         }
 
         public DateTime Dateofbirth
         {
             get { return _dateofbirth; }
-            set { _dateofbirth = value; }
+            set
+            {
+                if (value > DateTime.Now)
+                    throw new ArgumentException("Дата рождения не может быть в будущем");
+                _dateofbirth = value;
+            }
         }
 
         public string Post
         {
             get { return _post; }
-            set { _post = value; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Должность не может быть пустой или состоять только из пробельных символов");
+                _post = value;
+            }
         }
 
         public double Salary
         {
             get { return _salary; }
-            set { _salary = value; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("Зарплата не может быть отрицательной");
+                _salary = value;
+            }
         }
 
         public Transfer[] transfers
@@ -159,29 +194,50 @@ namespace CLASS
             _amount = 4;
         }
 
-        public string Тameofthemedicine
+        public string Nameofthemedicine
         {
             get { return _nameofthemedicine; }
-            set { _nameofthemedicine = value; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Название лекарства не может быть пустым или состоять только из пробельных символов");
+                _nameofthemedicine = value;
+            }
         }
 
         public string Packagingform
         {
             get { return _packagingform; }
-            set { _packagingform = value; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Форма упаковки не может быть пустой или состоять только из пробельных символов");
+                _nameofthemedicine = value;
+                _packagingform
         }
 
         public decimal Priceperpackage
         {
             get { return _priceperpackage; }
-            set { _priceperpackage = value; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("Цена за упаковку не может быть отрицательной");
+                _priceperpackage = value;
+            }
         }
 
         public decimal Amount
         {
             get { return _amount; }
-            set { _amount = value; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("Количество упаковок не может быть отрицательным");
+                _amount = value;
+            }
         }
+
         public void PrintToConsole()
         {
             Console.WriteLine($"Название лекарства: {_nameofthemedicine}, Форма упаковки: {_packagingform}, Цена за упаковку: {_priceperpackage}, Количество: {_amount}");
