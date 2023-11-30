@@ -56,6 +56,46 @@ namespace CLASS
             _transfers = new Transfer[] { new Transfer("Фармацевт", "Повышение", 333, new DateTime(25,2,2333)), new Transfer() };
         }
 
+        public string Position
+        {
+            get
+            {
+                if (_transfers.Length > 0)
+                {
+                    return _transfers[_transfers.Length - 1].Post; // Возвращает последнюю должность из массива _transfers
+                }
+                else
+                {
+                    return "Не работает";
+                }
+            }
+        }
+
+        public void ChangePosition(string newPosition, int orderNumber, DateTime orderDate)
+        {
+            Transfer newTransfer = new Transfer(newPosition, "Изменение должности", orderNumber, orderDate);
+            Transfer[] newTransfers = new Transfer[_transfers.Length + 1];
+            Array.Copy(_transfers, newTransfers, _transfers.Length);
+            newTransfers[newTransfers.Length - 1] = newTransfer;
+            _transfers = newTransfers;
+        }
+
+        public int CalculateAge()
+        {
+            DateTime currentDate = DateTime.Now;
+            int age = currentDate.Year - _dateofbirth.Year;
+            if (currentDate.Month < _dateofbirth.Month || (currentDate.Month == _dateofbirth.Month && currentDate.Day < _dateofbirth.Day))
+            {
+                age--;
+            }
+            return age;
+        }
+
+        public string FullName
+        {
+            get { return $"{_name} {_lastname} {_middlename}"; }
+        }
+
         public string Name
         {
             get { return _name; }
@@ -137,6 +177,20 @@ namespace CLASS
         {
             get { return _transfers; }
             set { _transfers = value; }
+        }
+
+        public void PrintEmployeeInfo()
+        {
+            Console.WriteLine($"Сотрудник: {FullName}");
+            Console.WriteLine($"Возраст: {CalculateAge()} лет");
+            Console.WriteLine($"Место проживания: {Address}");
+            Console.WriteLine($"Должность: {Position}");
+            Console.WriteLine($"Зарплата: {Salary} рублей");
+            Console.WriteLine("Переводы:");
+            foreach (var transfer in _transfers)
+            {
+                transfer.PrintToConsole();
+            }
         }
     }
 
@@ -293,12 +347,17 @@ namespace CLASS
             Transfer[] transfers = new[]
             {
                 new Transfer(),
-                new Transfer("ррпр","прапрарп",90, new DateTime(2023, 5, 15))
+                new Transfer("ррпр","прапрарп",90, new DateTime(1991, 5, 15))
             };
-            Employees employees = new Employees("Иван", "Иванов", "Иванович", "Улица Пушкина", new DateTime(2023, 5, 15), 120000, "Заместитель фармацевта", transfers);
+            Employees employees = new Employees("Иван", "Иванов", "Иванович", "Улица Пушкина", new DateTime(1997, 5, 15), 120000, "Заместитель фармацевта", transfers);
             employees.PrintToConsole();
+
             AssortmentOfMedicines assortmentOfMedicines = new AssortmentOfMedicines("Парацетомол", "Прямоугольная", 200, 4);
-            assortmentOfMedicines.AddDiscount(20);
+            assortmentOfMedicines.AddDiscount(10);
+
+            Console.WriteLine("\nИзменение должности:");
+            employees.ChangePosition("Новая должность", 123, DateTime.Now);
+            employees.PrintEmployeeInfo();
             assortmentOfMedicines.PrintToConsole();
             Console.ReadKey();
         }
