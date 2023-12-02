@@ -11,7 +11,7 @@ using System.Runtime.ConstrainedExecution;
 
 namespace CLASS
 {
-    class Employees
+    public class Employees
     {
         string _name;
         string _lastname;
@@ -53,7 +53,7 @@ namespace CLASS
             _dateofbirth = new DateTime(2000, 10, 30);
             _salary = 150000;
             _post = "Заместитель фармацевта";
-            _transfers = new Transfer[] { new Transfer("Фармацевт", "Повышение", 333, new DateTime(25,2,2333)), new Transfer() };
+            _transfers = new Transfer[] { new Transfer("Фармацевт", "Повышение", 333, new DateTime(2010,2,10)), new Transfer() };
         }
 
         public string Position
@@ -354,6 +354,7 @@ namespace CLASS
 
             AssortmentOfMedicines assortmentOfMedicines = new AssortmentOfMedicines("Парацетомол", "Прямоугольная", 200, 4);
             assortmentOfMedicines.AddDiscount(10);
+
 
             Console.WriteLine("\nИзменение должности:");
             employees.ChangePosition("Новая должность", 123, DateTime.Now);
