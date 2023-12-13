@@ -90,10 +90,19 @@ namespace CLASS
             }
             return age;
         }
-
         public string FullName
         {
-            get { return $"{_name} {_lastname} {_middlename}"; }
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(_middlename))
+                {
+                    return $"{_name} {_lastname} {_middlename}";
+                }
+                else
+                {
+                    return $"{_name} {_lastname}";
+                }
+            }
         }
 
         public string Name
@@ -121,12 +130,7 @@ namespace CLASS
         public string Middlename
         {
             get { return _middlename; }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Отчество не может быть пустым или состоять только из пробельных символов");
-                _middlename = value;
-            }
+            set { _middlename = value; }
         }
 
         public string Address
@@ -355,6 +359,8 @@ namespace CLASS
             AssortmentOfMedicines assortmentOfMedicines = new AssortmentOfMedicines("Парацетомол", "Прямоугольная", 200, 4);
             assortmentOfMedicines.AddDiscount(10);
 
+            Employees employeeWithoutMiddleName = new Employees("Петр", "Петров", "", "Улица Лермонтова", new DateTime(1990, 3, 25), 100000, "Фармацевт", transfers);
+            employeeWithoutMiddleName.PrintToConsole();
 
             Console.WriteLine("\nИзменение должности:");
             employees.ChangePosition("Новая должность", 123, DateTime.Now);
