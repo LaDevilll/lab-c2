@@ -44,7 +44,7 @@ namespace CLASS
             _salary = salary;
         }
 
-        public Employees()
+        public Employees()   
         {
             _name = "Валерий";
             _lastname = "Леонтьев";
@@ -53,10 +53,11 @@ namespace CLASS
             _dateofbirth = new DateTime(2000, 10, 30);
             _salary = 150000;
             _post = "Заместитель фармацевта";
-            _transfers = new Transfer[] { new Transfer("Фармацевт", "Повышение", 333, new DateTime(2010,2,10)), new Transfer() };
+            _transfers = new Transfer[] { new Transfer() }; //пустой перевод  
+            //_transfers = new Transfer[] { new Transfer("Фармацевт", "Повышение", 333, new DateTime(2010,2,10)), new Transfer() };
         }
 
-        public string Position
+        public string Position   // возвращает текущую должность сотрудника
         {
             get
             {
@@ -76,9 +77,35 @@ namespace CLASS
             Transfer newTransfer = new Transfer(newPosition, "Изменение должности", orderNumber, orderDate);
             Transfer[] newTransfers = new Transfer[_transfers.Length + 1];
             Array.Copy(_transfers, newTransfers, _transfers.Length);
-            newTransfers[newTransfers.Length - 1] = newTransfer;
+            newTransfers[newTransfers.Length - 1] = newTransfer; //  новый перевод в конец массива
             _transfers = newTransfers;
         }
+
+        //public void ChangePosition(string newPosition, int orderNumber, DateTime orderDate)
+        //{
+        //    Transfer newTransfer = new Transfer(newPosition, "Изменение должности", orderNumber, orderDate);
+        //    _transfers = new Transfer[] { newTransfer };
+
+        //}
+
+        //public void ChangePosition(string newPosition, int orderNumber, DateTime orderDate)
+        //{
+        //    Transfer newTransfer = new Transfer(newPosition, "Изменение должности", orderNumber, orderDate);
+
+        //    // Проверка, чтобы избежать копирования при первом вызове
+        //    if (_transfers.Length == 1 && _transfers[0].Post == null)
+        //    {
+        //        _transfers[0] = newTransfer;
+        //    }
+        //    else
+        //    {
+        //        Transfer[] newTransfers = new Transfer[_transfers.Length + 1];
+        //        Array.Copy(_transfers, newTransfers, _transfers.Length);
+        //        newTransfers[newTransfers.Length - 1] = newTransfer;
+        //        _transfers = newTransfers;
+        //    }
+        //}
+
 
         public int CalculateAge()
         {
