@@ -72,6 +72,7 @@ namespace CLASS
             }
         }
 
+
         public void ChangePosition(string newPosition, int orderNumber, DateTime orderDate)
         {
             Transfer newTransfer = new Transfer(newPosition, "Изменение должности", orderNumber, orderDate);
