@@ -82,17 +82,16 @@ namespace _123456
             return CalculateAge(DateTime.Today, Dateofbirth);
         }
 
-        public static int CalculateAge(DateTime date, DateTime birhtDate)
+        public static int CalculateAge(DateTime currentDate, DateTime birthDate)
         {
-            DateTime currentDate = date;
-            int age = currentDate.Year - birhtDate.Year;
-            if (currentDate.Month < birhtDate.Month || (currentDate.Month == birhtDate.Month && currentDate.Day < birhtDate.Day))
+            int age = currentDate.Year - birthDate.Year;
+            if (currentDate.Month < birthDate.Month || (currentDate.Month == birthDate.Month && currentDate.Day < birthDate.Day))
             {
                 age--;
             }
             return age;
-
         }
+
 
         public string FullName
         {

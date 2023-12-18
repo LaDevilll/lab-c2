@@ -30,31 +30,19 @@ namespace _123456_Test
             Assert.AreEqual("Новая должность", employee.Position); // после изменения должности соответствует строке новая должность
             Assert.AreEqual(3, employee.transfers.Length);
         }
-
+        
         [TestMethod]
-        public void CalculateAge_2()
+        [DataRow(2003, 12, 18, 20)]
+        [DataRow(2003, 12, 19, 19)]
+
+        public void CalculateAge_Test(int birthYear, int birthMonth, int birthDay, int expected)
         {
-            DateTime birthDateMinusOneDay = DateTime.Now.AddYears(-23).AddDays(-1); //до
-            DateTime birthDatePlusOneDay = DateTime.Now.AddYears(-23).AddDays(1); // после
-
-            Employees employee1 = new Employees("Имя", "Фамилия", "Отчество", "Адрес", birthDateMinusOneDay, 50000, "Должность", null); // создается объект класса Employees с использованием первой даты рождения
-            Employees employee2 = new Employees("Имя", "Фамилия", "Отчество", "Адрес", birthDatePlusOneDay, 50000, "Должность", null); // вторая дата 
-
-            int age1 = employee1.CalculateAge(); // вызывается метод CalculateAge для первого сотрудника, возвращающий его возраст
-            int age2 = employee2.CalculateAge();
-
-            Assert.AreEqual(23, age1); //проверка
-            Assert.AreEqual(22, age2);
+            DateTime birthDate = new DateTime(birthYear, birthMonth, birthDay);
+            Employees employee = new Employees("Имя", "Фамилия", "Отчество", "Адрес", birthDate, 50000, "Должность", null);
+            int calculateAge = employee.CalculateAge();
+            Assert.AreEqual(expected, calculateAge);
         }
 
-        //[TestMethod]
-        //public void FullName_WithMiddleName()
-        //{
-        //    Transfer[] transfers = { new Transfer(), new Transfer("ррпр", "прапрарп", 90, new DateTime(1991, 5, 15)) }; // мас из 2 переводов, 1 - пустой 
-        //    Employees employee = new Employees("Иван", "Иванов", "Иванович", "Улица Пушкина", new DateTime(1997, 5, 15), 120000, "Заместитель фармацевта", transfers); // объект класса, вкл мас переводов
-        //    string fullName = employee.FullName; //dызывается свойство FullName 
-        //    Assert.AreEqual("Иван Иванов Иванович", fullName);//проверка
-        //}
 
         [TestMethod]
         [DataRow("Пётр", "Иванов", "", "Пётр Иванов" )]
@@ -64,7 +52,7 @@ namespace _123456_Test
         {
             Employees employee = new Employees(Name, LastlName, MiddleName,"ADADA", new DateTime(1957,10,2), 2000, "Фармацевт", new Transfer[1]); // отчество -gecnfz cnhjrf
             string fullName = employee.FullName; // возвращает строку, представляющую полное имя сотрудника
-            Assert.AreEqual(expected, fullName); //проверка
+            Assert.AreEqual(expected, fullName); // проверка
         }
 
         //[TestMethod]
