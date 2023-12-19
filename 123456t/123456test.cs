@@ -31,15 +31,16 @@ namespace _123456_Test
             Assert.AreEqual(3, employee.transfers.Length);
         }
         
-        [TestMethod]
-        [DataRow(2003, 12, 18, 20)]
-        [DataRow(2003, 12, 19, 19)]
 
+        [TestMethod]
+        [DataRow(2003, 1, 4, 1)]
+        [DataRow(2003, 1, 6, 2)]
         public void CalculateAge_Test(int birthYear, int birthMonth, int birthDay, int expected)
         {
             DateTime birthDate = new DateTime(birthYear, birthMonth, birthDay);
             Employees employee = new Employees("Имя", "Фамилия", "Отчество", "Адрес", birthDate, 50000, "Должность", null);
-            int calculateAge = employee.CalculateAge();
+            DateTime currentDateForAgeCalculation = new DateTime(2005, 1, 5);
+            int calculateAge = Employees.CalculateAge(currentDateForAgeCalculation, birthDate);
             Assert.AreEqual(expected, calculateAge);
         }
 
@@ -54,18 +55,6 @@ namespace _123456_Test
             string fullName = employee.FullName; // возвращает строку, представляющую полное имя сотрудника
             Assert.AreEqual(expected, fullName); // проверка
         }
-
-        //[TestMethod]
-        //[DataRow("Пётр", "Петров", "", "Пётр Иванов" )]
-        //[DataRow("Пётр", "Петров", "Иванович", "Пётр Иванов Иванович")]
-        
-        //public void FullName_Test2(string Name, string LastlName, string MiddleName, string expected) 
-        //{
-        //    Employees employee = new Employees(); // отчество -gecnfz cnhjrf
-        //    employee.Lastname = LastlName; // возвращает строку, представляющую полное имя сотрудника
-        //    Assert.AreEqual(expected, ); //проверка
-        //}
-
 
     }
 }

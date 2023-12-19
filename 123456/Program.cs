@@ -33,7 +33,7 @@ namespace CLASS
 
             Console.WriteLine("\nИзменение должности:");
             employees.ChangePosition("Новая должность", 123, DateTime.Now);
-            employees.PrintEmployeeInfo();
+            employees.PrintToConsole();
             assortmentOfMedicines.PrintToConsole();
             Console.ReadKey();
         }

@@ -77,9 +77,9 @@ namespace _123456
         }
 
 
-        public int CalculateAge()
+        public int CalculateAge(DateTime currentDate)
         {
-            return CalculateAge(DateTime.Today, Dateofbirth);
+            return CalculateAge(currentDate, Dateofbirth);
         }
 
         public static int CalculateAge(DateTime currentDate, DateTime birthDate)
@@ -91,6 +91,7 @@ namespace _123456
             }
             return age;
         }
+
 
 
         public string FullName
@@ -186,10 +187,10 @@ namespace _123456
             set { _transfers = value; }
         }
 
-        public void PrintEmployeeInfo()
+        public void PrintEmployeeInfo(DateTime currentDate)
         {
             Console.WriteLine($"Сотрудник: {FullName}");
-            Console.WriteLine($"Возраст: {CalculateAge()} лет");
+            Console.WriteLine($"Возраст: {CalculateAge(currentDate)} лет");
             Console.WriteLine($"Место проживания: {Address}");
             Console.WriteLine($"Должность: {Position}");
             Console.WriteLine($"Зарплата: {Salary} рублей");
