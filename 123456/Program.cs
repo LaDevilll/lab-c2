@@ -7,12 +7,10 @@ using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Runtime.ConstrainedExecution;
-using _123456;
+using _BDApteki;
 
 namespace CLASS
 {
-   
-
     internal class Program
     {
         static void Main(string[] args)

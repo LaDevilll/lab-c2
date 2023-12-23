@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "123456", "123456\123456.csproj", "{7B4DFFA8-2EB2-4A22-93E3-1516FD81DE81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDApteki", "123456\BDApteki.csproj", "{7B4DFFA8-2EB2-4A22-93E3-1516FD81DE81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathTaskClassLibrary", "MathTaskClassLibrary\MathTaskClassLibrary.csproj", "{342C93CA-CDD0-4966-AEE2-D8C2C9239252}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathTaskClassLibraryTests", "MathTaskClassLibraryTests\MathTaskClassLibraryTests.csproj", "{85809086-7E3A-4CD7-A4F4-41F1EFCE1CE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "123456t", "123456t\123456t.csproj", "{C1FE75EA-5E74-44E3-89CE-8022FF75A958}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDAptekiTests", "123456t\BDAptekiTests.csproj", "{C1FE75EA-5E74-44E3-89CE-8022FF75A958}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

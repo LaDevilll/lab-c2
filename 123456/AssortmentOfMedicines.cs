@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _123456
+namespace _BDApteki
 {
     public class AssortmentOfMedicines
     {
@@ -39,6 +39,17 @@ namespace _123456
             Priceperpackage *= discountMultiplier;
         }
 
+        public decimal Priceperpackage
+        {
+            get { return _priceperpackage; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("Цена за упаковку не может быть отрицательной");
+                _priceperpackage = value;
+            }
+        }
+
         public string Nameofthemedicine
         {
             get { return _nameofthemedicine; }
@@ -61,16 +72,7 @@ namespace _123456
             }
         }
 
-        public decimal Priceperpackage
-        {
-            get { return _priceperpackage; }
-            set
-            {
-                if (value < 0)
-                    throw new ArgumentException("Цена за упаковку не может быть отрицательной");
-                _priceperpackage = value;
-            }
-        }
+        
 
         public decimal Amount
         {

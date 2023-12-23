@@ -1,15 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using CLASS;
-using _123456;
+using _BDApteki;
 
-namespace _123456_Test
+namespace _EmployeesTests
 {
     [TestClass]
-    public class UnitTest1
+    public class EmployeeTest
     {
         [TestMethod]
-        public void ChangePosition_()
+        public void ChangePosition_1()
         {
             Employees employee = new Employees();
             employee.ChangePosition("Новая должность", 123, DateTime.Now); // для изменения должности сотрудника
@@ -18,7 +18,7 @@ namespace _123456_Test
         }
 
         [TestMethod]
-        public void ChangePosition_1()
+        public void ChangePosition_2()
         {
             Transfer[] transfers = new[]
             {
@@ -33,8 +33,8 @@ namespace _123456_Test
         
 
         [TestMethod]
-        [DataRow(2003, 1, 4, 1)]
-        [DataRow(2003, 1, 6, 2)]
+        [DataRow(2003, 1, 4, 2)]
+        [DataRow(2003, 1, 6, 1)]
         public void CalculateAge_Test(int birthYear, int birthMonth, int birthDay, int expected)
         {
             DateTime birthDate = new DateTime(birthYear, birthMonth, birthDay);
@@ -55,6 +55,5 @@ namespace _123456_Test
             string fullName = employee.FullName; // возвращает строку, представляющую полное имя сотрудника
             Assert.AreEqual(expected, fullName); // проверка
         }
-
     }
 }
